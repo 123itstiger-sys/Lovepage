@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background:#ffe6eb;
+    padding-top:100px;
+}
+
+h1{
+    color:#ff3366;
+}
+
+button{
+    padding:10px 25px;
+    font-size:18px;
+    margin:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will You Be My Girlfriend? ❤️</h1>
+
+<p>You are very special to me.</p>
+
+<button onclick="yesClicked()">Yes ❤️</button>
+<button id="noBtn">No 😢</button>
+
+<script>
+
+function yesClicked(){
+    document.body.innerHTML =
+    "<h1>Yay! ❤️</h1><h2>You made my day 😊</h2>";
+}
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function(){
+
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+</script>
+
+</body>
+</html>
