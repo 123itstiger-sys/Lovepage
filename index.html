@@ -3,59 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghuman ❤️ Muskan</title>
+<title>Love Page ❤️</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
-
 body{
-height:100vh;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ff5f9e,#ff9a8b);
-text-align:center;
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ff4d88,#ff9a8b);
 color:white;
+text-align:center;
+overflow:hidden;
 }
 
 .container{
-padding:20px;
-z-index:10;
+padding:40px 20px;
+margin-top:80px;
 }
 
 h1{
 font-size:3rem;
-margin-bottom:15px;
-animation: glow 2s infinite alternate;
 }
 
-@keyframes glow{
-from{transform:scale(1);}
-to{transform:scale(1.05);}
-}
-
-p{
-font-size:1.2rem;
-max-width:600px;
-margin:auto;
-margin-bottom:25px;
-line-height:1.6;
+input{
+padding:12px;
+font-size:18px;
+border:none;
+border-radius:10px;
+width:250px;
+max-width:80%;
 }
 
 button{
-padding:14px 30px;
-font-size:20px;
+padding:12px 24px;
+font-size:18px;
 border:none;
-border-radius:40px;
+border-radius:25px;
 cursor:pointer;
 margin:10px;
-font-weight:bold;
 }
 
 #yes{
@@ -73,18 +57,11 @@ position:relative;
 position:absolute;
 font-size:25px;
 animation:float 6s linear infinite;
-opacity:0.8;
 }
 
 @keyframes float{
-0%{
-transform:translateY(100vh);
-opacity:1;
-}
-100%{
-transform:translateY(-100px);
-opacity:0;
-}
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-100px);}
 }
 
 #success{
@@ -98,72 +75,90 @@ background:linear-gradient(135deg,#ff4d88,#ff9a8b);
 justify-content:center;
 align-items:center;
 flex-direction:column;
-font-size:2rem;
 z-index:100;
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
-<h1>❤️ Ghuman Singh ❤️ Muskan ❤️</h1>
+
+<h1>❤️ Ghuman Singh ❤️ <span id="nameText">Someone Special</span> ❤️</h1>
 
 <p>
-Muskan, every beautiful moment reminds me of you.
-You bring happiness, smiles and warmth wherever you go.
+Every beautiful moment reminds me of you.
 </p>
 
-<p>
-Will you always stay special to me? ❤️
-</p>
+<input type="text" id="nameInput" placeholder="Enter Name">
+
+<button onclick="updateName()">Generate ❤️</button>
+
+<h2>Will you always stay special to me? ❤️</h2>
 
 <button id="yes">YES ❤️</button>
 <button id="no">NO 😜</button>
+
 </div>
 
 <div id="success">
 <h1>🎉 YAYYYY ❤️ 🎉</h1>
-<p>Muskan, You Made My Day ❤️</p>
-<p>Forever Starts Now 💍✨</p>
+<h2 id="successName"></h2>
 </div>
 
 <script>
 
-const noBtn = document.getElementById("no");
+const params = new URLSearchParams(window.location.search);
+const urlName = params.get("name");
 
-function moveButton(){
-let x = Math.random() * (window.innerWidth - 150);
-let y = Math.random() * (window.innerHeight - 100);
-
-noBtn.style.position = "absolute";
-noBtn.style.left = x + "px";
-noBtn.style.top = y + "px";
+if(urlName){
+document.getElementById("nameText").innerText = urlName;
 }
 
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("click", moveButton);
+function updateName(){
+let name = document.getElementById("nameInput").value;
 
-document.getElementById("yes").addEventListener("click", ()=>{
+if(name.trim()!=""){
+document.getElementById("nameText").innerText = name;
+}
+}
+
+document.getElementById("yes").onclick = function(){
+let name = document.getElementById("nameText").innerText;
+
 document.getElementById("success").style.display="flex";
-});
+document.getElementById("successName").innerHTML =
+"❤️ Thank You " + name + " ❤️";
+}
+
+const noBtn=document.getElementById("no");
+
+function moveBtn(){
+let x=Math.random()*(window.innerWidth-150);
+let y=Math.random()*(window.innerHeight-100);
+
+noBtn.style.position="absolute";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+}
+
+noBtn.addEventListener("mouseover",moveBtn);
+noBtn.addEventListener("click",moveBtn);
 
 function createHeart(){
 const heart=document.createElement("div");
 heart.classList.add("heart");
 heart.innerHTML="❤️";
-
 heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(3+Math.random()*4)+"s";
-heart.style.fontSize=(20+Math.random()*20)+"px";
 
 document.body.appendChild(heart);
 
 setTimeout(()=>{
 heart.remove();
-},7000);
+},6000);
 }
 
-setInterval(createHeart,250);
+setInterval(createHeart,300);
 
 </script>
 
