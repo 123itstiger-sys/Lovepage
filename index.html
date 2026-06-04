@@ -1,46 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Love Page ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghuman ❤️ Muskan</title>
+
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
 body{
-    text-align:center;
-    font-family:Arial;
-    background:pink;
-    margin-top:100px;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff5f9e,#ff9a8b);
+text-align:center;
+color:white;
+}
+
+.container{
+padding:20px;
+z-index:10;
+}
+
+h1{
+font-size:3rem;
+margin-bottom:15px;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{transform:scale(1);}
+to{transform:scale(1.05);}
+}
+
+p{
+font-size:1.2rem;
+max-width:600px;
+margin:auto;
+margin-bottom:25px;
+line-height:1.6;
 }
 
 button{
-    padding:10px 20px;
-    font-size:20px;
-    margin:10px;
-    cursor:pointer;
+padding:14px 30px;
+font-size:20px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+margin:10px;
+font-weight:bold;
+}
+
+#yes{
+background:white;
+color:#ff2e7a;
 }
 
 #no{
-    position:absolute;
+background:#ff2e7a;
+color:white;
+position:relative;
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:float 6s linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+#success{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff4d88,#ff9a8b);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:2rem;
+z-index:100;
 }
 </style>
 </head>
-
 <body>
 
-<h1>Do You Love Me? ❤️</h1>
+<div class="container">
+<h1>❤️ Ghuman Singh ❤️ Muskan ❤️</h1>
 
-<button onclick="alert('I Love You Too ❤️')">Yes</button>
+<p>
+Muskan, every beautiful moment reminds me of you.
+You bring happiness, smiles and warmth wherever you go.
+</p>
 
-<button id="no">No</button>
+<p>
+Will you always stay special to me? ❤️
+</p>
+
+<button id="yes">YES ❤️</button>
+<button id="no">NO 😜</button>
+</div>
+
+<div id="success">
+<h1>🎉 YAYYYY ❤️ 🎉</h1>
+<p>Muskan, You Made My Day ❤️</p>
+<p>Forever Starts Now 💍✨</p>
+</div>
 
 <script>
-let noBtn = document.getElementById("no");
 
-noBtn.addEventListener("mouseover", function() {
-    let x = Math.random() * (window.innerWidth - 100);
-    let y = Math.random() * (window.innerHeight - 50);
+const noBtn = document.getElementById("no");
 
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+function moveButton(){
+let x = Math.random() * (window.innerWidth - 150);
+let y = Math.random() * (window.innerHeight - 100);
+
+noBtn.style.position = "absolute";
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+document.getElementById("yes").addEventListener("click", ()=>{
+document.getElementById("success").style.display="flex";
 });
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(3+Math.random()*4)+"s";
+heart.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},7000);
+}
+
+setInterval(createHeart,250);
+
 </script>
 
 </body>
